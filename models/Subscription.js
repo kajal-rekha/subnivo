@@ -38,6 +38,17 @@ const SubscriptionSchema = new Schema(
             type: Boolean,
             default: false,
         },
+        stripeSessionId: {
+            type: String,
+            unique: true,
+            sparse: true,
+        },
+        amount: {
+            type: Number,
+        },
+        currency: {
+            type: String,
+        },
     },
     { timestamps: true }
 );

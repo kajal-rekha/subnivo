@@ -1,6 +1,7 @@
 import Stripe from "stripe";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
+const baseUrl = process.env.BASE_URL?.trim() || "http://localhost:3000";
 
 export default async function handler(req, res) {
     if (req.method !== "POST") {
@@ -27,8 +28,8 @@ export default async function handler(req, res) {
                 },
             ],
             mode: "payment",
-            success_url: "https://subnix-plan.vercel.app/success",
-            cancel_url: "https://subnix-plan.vercel.app/cancel",
+            success_url: `${baseUrl}/success` ,
+            cancel_url: `${baseUrl}/cancel`,
             metadata: { userId, planId },
         });
 
