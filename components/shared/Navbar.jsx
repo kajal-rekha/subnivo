@@ -41,7 +41,7 @@ const Navbar = () => {
                     {/*====== Sidebar Toggle  =====*/}
                     <div className="flex items-center gap-2 ">
                         <div>
-                            <h2 className="">Subnix</h2>
+                            <h2 className="">Subnivo</h2>
                         </div>
 
                         {/* <AlignJustify
