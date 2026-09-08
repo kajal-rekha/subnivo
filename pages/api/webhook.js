@@ -60,6 +60,19 @@ export default async function handler(req, res) {
       return res.status(200).send("Subscription already exists");
     }
 
+    //========= Check if user already has an active subscription=========//
+    const activeSubscription = await Subscription.findOne({
+      user_id: userId,
+      status: "active",
+      endDate: { $gt: new Date() },
+    });
+
+    if (activeSubscription) {
+      console.log(" User already has an active subscription");
+
+      return res.status(200).send("User already has an active subscription");
+    }
+
     const startDate = new Date();
     const endDate = new Date(startDate);
 
