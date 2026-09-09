@@ -32,7 +32,7 @@ export default async function handler(req, res) {
 
     if (activeSubscription) {
       return res.status(400).json({
-        error: "You already have an active subscription.",
+        error: "You have already  an active subscription.",
       });
     }
 

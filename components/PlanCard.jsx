@@ -45,7 +45,7 @@ const PlanCard = ({ plan }) => {
             if (data.url) {
                 window.location.href = data.url;
             } else {
-                toast.error("Failed to initiate payment");
+                toast.error(data.error || "Payment initialization failed");
             }
         } catch (error) {
             console.error("Subscription error:", error);
