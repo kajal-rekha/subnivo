@@ -57,10 +57,10 @@ const Plans = () => {
   // }, []);
 
   return (
-    <div className="min-h-screen  pt-32">
+    <div className="min-h-screen ">
       <div className="wrapper">
         <div className="flex flex-col gap-1 items-center jistify-center mb-10">
-          <span className="text-blue font-medium "> Pricing</span>
+          <span className=" text-[11px] font-semibold uppercase tracking-[0.24em] text-[#8aa3ff]"> Pricing</span>
           <h2 className="text-2xl  md:text-4xl font-medium">
             Choose your plan
           </h2>
@@ -78,7 +78,7 @@ const Plans = () => {
             No plans found!
           </p>
         ) : (
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8  ">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  gap-8  ">
             {plans.map((plan) => (
               <PlanCard key={plan._id} plan={plan} />
             ))}
