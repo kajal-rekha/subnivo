@@ -61,11 +61,6 @@ const recentPayments = [
     plan: "Pro",
     amount: "$19",
   },
-  {
-    date: "Jul 04, 2026",
-    plan: "Basic",
-    amount: "$9",
-  },
 ];
 
 const Hero = () => {
