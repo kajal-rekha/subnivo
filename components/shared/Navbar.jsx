@@ -22,12 +22,12 @@ const Navbar = () => {
   ];
 
   return (
-    <div className="h-20 fixed top-0 left-0 right-0 z-50 text-light bg-[#0f1327] flex items-center">
-      <div className="wrapper w-full">
-        <div className="border-b border-light/10 pb-5 flex items-center justify-between">
+    <nav className="fixed top-0 left-0 right-0 z-50 h-20 border-b border-light/10 bg-[#0f1327] text-light">
+      <div className="wrapper flex h-full w-full items-center">
+        <div className="flex w-full items-center justify-between">
           {/* ============== LEFT : LOGO ============== */}
           <div className="shrink-0">
-            <Link href="/" className="text-xl font-bold uppercase">
+            <Link href="/" className="text-lg font-bold uppercase">
               Subnivo
             </Link>
           </div>
@@ -217,7 +217,7 @@ const Navbar = () => {
           </div>
         </div>
       </div>
-    </div>
+    </nav>
   );
 };
 

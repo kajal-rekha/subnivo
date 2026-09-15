@@ -37,7 +37,7 @@ const features = [
 
 const Features = () => {
   return (
-    <section className="pt-16 pb-16">
+    <section className="py-16 md:py-20 lg:py-24">
       <div className="wrapper">
         {/*============= Section Header ================*/}
         <div className="mx-auto max-w-4xl text-center">
@@ -45,13 +45,13 @@ const Features = () => {
             Why choose Subnivo
           </p>
 
-          <h2 className="text-3xl font-black leading-tight tracking-[-0.04em] text-white md:text-[3rem]">
+          <h2 className="text-2xl font-black leading-tight tracking-[-0.04em] text-white sm:text-3xl md:text-[2.5rem]">
             Everything You Need In One Place
           </h2>
 
-          <p className="mx-auto mt-4 max-w-2xl text-sm leading-6 text-slate-300 md:text-base">
-            Powerful features to help you manage subscriptions, payments, and
-            accounts — effortlessly.
+          <p className="mx-auto mt-4  text-sm leading-6 text-slate-300 md:text-base">
+            Powerful tools to manage subscriptions, payments, and accounts with
+            ease.
           </p>
         </div>
 
@@ -66,7 +66,7 @@ const Features = () => {
               min-h-[220px]
               rounded-[22px]
               border border-transparent
-              p-5
+              p-6
               text-left
               transition-all
               duration-300
@@ -103,7 +103,7 @@ const Features = () => {
         </div>
 
         {/*============= Section Divider ================*/}
-        <div className="mx-auto mt-14 h-px w-[85%] max-w-5xl bg-linear-to-r from-transparent via-[#1b2331] to-transparent" />
+        <div className="mx-auto mt-12 h-px w-[85%] max-w-5xl bg-linear-to-r from-transparent via-[#1b2331] to-transparent md:mt-16" />
       </div>
     </section>
   );

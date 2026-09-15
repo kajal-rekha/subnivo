@@ -65,7 +65,7 @@ const recentPayments = [
 
 const Hero = () => {
   return (
-    <section className="relative overflow-hidden pb-16 pt-12 md:pb-20 md:pt-16 lg:pb-24 lg:pt-20">
+    <section className="relative overflow-x-hidden pt-24 pb-16 md:pt-28 md:pb-20 lg:pt-32 lg:pb-24">
       {/* ================= Background Glow ================= */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
         <div className="absolute left-[-180px] top-[-120px] h-[400px] w-[400px] rounded-full bg-blue/10 blur-[120px]" />
@@ -76,10 +76,10 @@ const Hero = () => {
       </div>
 
       <div className="wrapper relative">
-        <div className="grid items-center gap-12 lg:grid-cols-[0.92fr_1.08fr] lg:gap-14">
+        <div className="grid items-center gap-8 sm:gap-10 lg:grid-cols-[0.92fr_1.08fr] lg:gap-14">
           {/* ============== LEFT CONTENT ================= */}
           <div className="flex flex-col items-center text-center lg:items-start lg:text-left">
-            {/* Badge */}
+            {/*============= Badge ================ */}
             <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-blue/20 bg-blue/10 px-3.5 py-2 text-[11px] font-medium text-blue shadow-[0_0_25px_rgba(125,153,255,0.08)]">
               <span className="flex h-4 w-4 items-center justify-center rounded-full bg-blue text-[9px] font-bold text-dark">
                 ✓
@@ -89,7 +89,7 @@ const Hero = () => {
             </div>
 
             {/* ============ Heading ================*/}
-            <h1 className="max-w-[560px] text-[2.8rem] font-black leading-[0.95] tracking-[-0.065em] text-white sm:text-5xl md:text-6xl lg:text-[4.3rem]">
+            <h1 className="text-[2rem] font-black leading-[0.95] tracking-[-0.065em] text-white sm:text-4xl md:text-5xl lg:text-[4.3rem]">
               Manage Your
               <span className="block">Subscriptions</span>
               <span className="mt-1 block bg-linear-to-r from-blue via-[#9eafff] to-indigo-400 bg-clip-text text-transparent">
@@ -98,16 +98,16 @@ const Hero = () => {
             </h1>
 
             {/*============= Description ================*/}
-            <p className="mt-6 max-w-[540px] text-base leading-7 text-slate-300 md:text-lg md:leading-8">
+            <p className="mt-5 text-sm leading-6 text-slate-300 sm:text-base md:text-lg md:leading-8">
               Built for modern subscription businesses, our platform helps you
               choose the right plan, manage payments, and keep your
               subscriptions organized — all in one place.
             </p>
 
             {/*============= CTA ================*/}
-            <div className="mt-8 flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
+            <div className="mt-7 flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
               <Link
-                href="/plans"
+                href="/signup"
                 className="group inline-flex items-center justify-center gap-2 rounded-xl bg-blue px-6 py-3.5 text-sm font-semibold text-dark shadow-[0_12px_30px_rgba(125,153,255,0.28)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#9aafff] hover:shadow-[0_16px_38px_rgba(125,153,255,0.38)]"
               >
                 Get Started
@@ -123,7 +123,7 @@ const Hero = () => {
             </div>
 
             {/*============= Trust ================*/}
-            <div className="mt-9 flex items-center gap-4">
+            <div className="mt-8 flex flex-col items-center gap-3 text-center sm:mt-9 sm:flex-row sm:items-center sm:gap-4 sm:text-left">
               {/*============= Avatars ================*/}
               <div className="flex -space-x-2">
                 {["A", "M", "R", "S"].map((person, index) => (
@@ -144,8 +144,8 @@ const Hero = () => {
                 ))}
               </div>
 
-              <div className="text-left">
-                <div className="flex items-center gap-1.5">
+              <div>
+                <div className="flex items-center justify-center gap-1.5 sm:justify-start">
                   <ShieldCheck className="h-4 w-4 text-blue" />
 
                   <span className="text-sm font-semibold text-white">
@@ -369,9 +369,9 @@ const Hero = () => {
                       </button>
                     </div>
 
-                    <div className="overflow-hidden rounded-xl border border-[#203252]">
+                    <div className="overflow-x-auto rounded-xl border border-[#203252]">
                       {/*============= Table Header ================*/}
-                      <div className="grid grid-cols-[1.3fr_0.9fr_0.7fr_0.6fr] bg-[#0d1931] px-3 py-2.5 text-[8px] font-medium uppercase tracking-[0.12em] text-slate-500">
+                      <div className="grid min-w-[300px] grid-cols-[1.3fr_0.9fr_0.7fr_0.7fr] bg-[#0d1931] px-3 py-2.5 text-[8px] font-medium uppercase tracking-[0.12em] text-slate-500">
                         <span>Date</span>
                         <span>Plan</span>
                         <span>Amount</span>
@@ -382,7 +382,7 @@ const Hero = () => {
                       {recentPayments.map(({ date, plan, amount }) => (
                         <div
                           key={date}
-                          className="grid grid-cols-[1.3fr_0.9fr_0.7fr_0.6fr] items-center border-t border-[#203252] bg-[#0a152a] px-3 py-2.5 text-[8px] text-slate-400"
+                          className="grid min-w-[300px] grid-cols-[1.3fr_0.9fr_0.7fr_0.7fr] items-center border-t border-[#203252] bg-[#0a152a] px-3 py-2.5 text-[8px] text-slate-400"
                         >
                           <span>{date}</span>
 

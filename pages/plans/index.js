@@ -57,24 +57,25 @@ const Plans = () => {
   // }, []);
 
   return (
-    <div className="min-h-screen ">
+    <section className="py-16 md:py-20 lg:py-24">
       <div className="wrapper">
-        <div className="flex flex-col gap-1 items-center jistify-center mb-10">
-          <span className=" text-[11px] font-semibold uppercase tracking-[0.24em] text-[#8aa3ff]"> Pricing</span>
-          <h2 className="text-2xl  md:text-4xl font-medium">
-            Choose your plan
+        <div className="mb-12 flex flex-col items-center justify-center gap-1">
+          <span className=" text-[11px] font-semibold uppercase tracking-[0.24em] text-[#8aa3ff]">
+            Pricing
+          </span>
+          <h2 className="text-2xl font-black leading-tight tracking-[-0.04em] text-white sm:text-3xl md:text-[2.5rem]">
+            Choose the Right Plan for You
           </h2>
-          <p className="text-light/80  max-w-3xl text-lg text-center">
-            {` Pick the perfect plan that fits your goals. Whether
-                        you’re just getting started or scaling fast, we’ve got a
-                        plan that grows with you.`}
+          <p className="mx-auto mt-4  text-sm leading-6 text-slate-300 md:text-base">
+            Choose the perfect plan for your goals—start small or scale with
+            confidence.
           </p>
         </div>
 
         {loading ? (
           <Loading />
         ) : plans.length === 0 ? (
-          <p className="text-light/80 justify-center text-lg text-center mt-2">
+          <p className="mt-2 text-center text-lg text-light/80">
             No plans found!
           </p>
         ) : (
@@ -85,7 +86,7 @@ const Plans = () => {
           </div>
         )}
       </div>
-    </div>
+    </section>
   );
 };
 
