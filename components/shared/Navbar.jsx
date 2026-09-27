@@ -2,17 +2,34 @@ import { logout } from "@/redux/features/auth/authSlice";
 import { Menu, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import toast from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
 
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
+  const userMenuRef = useRef(null);
 
   const session = useSelector((state) => state.auth.userAndToken);
   const dispatch = useDispatch();
+  const dashboardHref =
+    session?.user?.role === "admin"
+      ? "/dashboard/adminDashboard"
+      : "/dashboard";
 
   const closeMobileMenu = () => setIsMobileMenuOpen(false);
+
+  useEffect(() => {
+    const handleOutsideClick = (event) => {
+      if (userMenuRef.current && !userMenuRef.current.contains(event.target)) {
+        setIsUserMenuOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleOutsideClick);
+    return () => document.removeEventListener("mousedown", handleOutsideClick);
+  }, []);
 
   const navItems = [
     { name: "Home", href: "/" },
@@ -28,7 +45,7 @@ const Navbar = () => {
           {/* ============== LEFT : LOGO ============== */}
           <div className="shrink-0">
             <Link href="/" className="text-lg font-bold uppercase">
-              Subnivo
+              Subnix
             </Link>
           </div>
 
@@ -82,15 +99,35 @@ const Navbar = () => {
               <>
                 {/*============ User ==============*/}
                 <div className="flex items-center gap-3">
-                  <div className="h-10 w-10 overflow-hidden rounded-full">
-                    <Image
-                      src={session.user.image}
-                      alt={session.user.username}
-                      width={64}
-                      height={64}
-                      priority
-                      className="h-full w-full object-cover"
-                    />
+                  <div ref={userMenuRef} className="relative">
+                    <button
+                      type="button"
+                      aria-label="Open user menu"
+                      aria-expanded={isUserMenuOpen}
+                      className="h-10 w-10 cursor-pointer overflow-hidden rounded-full ring-offset-2 ring-offset-[#0f1327] transition hover:ring-2 hover:ring-blue"
+                      onClick={() => setIsUserMenuOpen((isOpen) => !isOpen)}
+                    >
+                      <Image
+                        src={session.user.image}
+                        alt={session.user.username}
+                        width={64}
+                        height={64}
+                        priority
+                        className="h-full w-full object-cover"
+                      />
+                    </button>
+
+                    {isUserMenuOpen && (
+                      <div className="absolute right-0 top-12 z-10 min-w-40 rounded-md border border-light/10 bg-[#151b33] p-1 shadow-xl">
+                        <Link
+                          href={dashboardHref}
+                          onClick={() => setIsUserMenuOpen(false)}
+                          className="block rounded px-3 py-2 text-sm transition-colors hover:bg-white/10 hover:text-blue"
+                        >
+                          Dashboard
+                        </Link>
+                      </div>
+                    )}
                   </div>
 
                   {/*================== Desktop Logout ===============*/}
@@ -200,6 +237,14 @@ const Navbar = () => {
 
                   <span className="font-medium">{session.user.username}</span>
                 </div>
+
+                <Link
+                  href={dashboardHref}
+                  onClick={closeMobileMenu}
+                  className="rounded-md border border-light/10 px-4 py-2.5 text-center transition hover:border-blue hover:text-blue"
+                >
+                  Dashboard
+                </Link>
 
                 <button
                   type="button"

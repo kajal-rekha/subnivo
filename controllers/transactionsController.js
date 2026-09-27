@@ -46,6 +46,22 @@ export const getAllTransactions = async (req, res) => {
     }
 };
 
+// ===== Get Logged In User's Transactions ===== //
+export const getMyTransactions = async (req, res) => {
+    try {
+        const transactions = await Transaction.find({ user_id: req.user._id })
+            .populate("subscription_id", "status startDate endDate")
+            .sort({ createdAt: -1 });
+
+        return res.status(200).json(transactions);
+    } catch (error) {
+        console.error("Error fetching user transactions:", error);
+        return res
+            .status(500)
+            .json({ message: "Failed to fetch transactions." });
+    }
+};
+
 // ===== Get A Transaction  ===== //
 export const getATransaction = async (req, res) => {
     try {
