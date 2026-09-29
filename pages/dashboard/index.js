@@ -16,6 +16,7 @@ import {
 import UserDashboard from "@/components/UserDashboard";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 
 const sidebarItems = [
@@ -118,6 +119,11 @@ const Dashboard = ({ allowAdmin = false }) => {
   const session = useSelector((state) => state.auth.userAndToken);
   const username = session?.user?.username || session?.username || "Admin";
   const isAdmin = session?.user?.role === "admin";
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
+  useEffect(() => {
+    setIsSidebarOpen(window.matchMedia("(min-width: 1024px)").matches);
+  }, []);
 
   if (isAdmin && !allowAdmin) {
     router.replace("/dashboard/adminDashboard");
@@ -130,16 +136,35 @@ const Dashboard = ({ allowAdmin = false }) => {
 
   return (
     <div className="min-h-screen bg-[#07101f] text-white">
-      <div className="flex min-h-screen flex-col lg:flex-row">
-        <aside className="w-full shrink-0 border-b border-white/8 bg-[#081426] px-5 py-5 lg:w-[230px] lg:border-b-0 lg:border-r lg:px-4">
-          <div className="flex items-center gap-3 px-2 pb-8">
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-linear-to-br from-sky-400 to-indigo-500 text-sm font-bold shadow-lg shadow-sky-500/20">
-              S
-            </div>
-            <span className="text-lg font-bold tracking-tight">SUBNIVO</span>
+      <div className="relative flex min-h-screen overflow-hidden">
+        {isSidebarOpen && (
+          <button
+            type="button"
+            aria-label="Close sidebar"
+            onClick={() => setIsSidebarOpen(false)}
+            className="fixed inset-0 z-20 bg-black/60 lg:hidden"
+          />
+        )}
+        <aside
+          className={`absolute inset-y-0 left-0 z-30 flex w-[230px] shrink-0 flex-col border-r border-white/8 bg-[#081426] px-4 py-5 transition-transform duration-200 lg:relative lg:inset-auto lg:z-auto ${isSidebarOpen ? "translate-x-0" : "-translate-x-full lg:hidden"}`}
+        >
+          <div className="px-2 pb-8">
+            <button
+              type="button"
+              aria-label="Hide sidebar"
+              aria-controls="admin-dashboard-sidebar"
+              aria-expanded={isSidebarOpen}
+              onClick={() => setIsSidebarOpen(false)}
+              className="flex items-center gap-3 rounded text-left"
+            >
+              <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-linear-to-br from-sky-400 to-indigo-500 text-sm font-bold shadow-lg shadow-sky-500/20">
+                S
+              </span>
+              <span className="text-lg font-bold tracking-tight">SUBNIVO</span>
+            </button>
           </div>
 
-          <nav className="grid grid-cols-2 gap-1 lg:block lg:space-y-1">
+          <nav id="admin-dashboard-sidebar" className="space-y-1">
             {sidebarItems.map(({ label, icon: Icon, active }) => (
               <button
                 key={label}
@@ -152,7 +177,7 @@ const Dashboard = ({ allowAdmin = false }) => {
             ))}
           </nav>
 
-          <div className="mt-10 hidden rounded-lg border border-white/8 bg-white/3 p-3 lg:block">
+          <div className="mt-10 rounded-lg border border-white/8 bg-white/3 p-3">
             <div className="mb-2 flex items-center justify-between text-xs text-slate-300">
               <span>Need help?</span>
               <MoreHorizontal size={14} />
@@ -165,13 +190,29 @@ const Dashboard = ({ allowAdmin = false }) => {
 
         <main className="min-w-0 flex-1 bg-[#0b172b] px-4 py-5 sm:px-6 lg:px-8 lg:py-6">
           <header className="flex flex-col gap-5 border-b border-white/8 pb-5 xl:flex-row xl:items-center xl:justify-between">
-            <div>
-              <h1 className="mt-1 text-xl font-semibold tracking-tight text-white sm:text-2xl">
-                Admin Dashboard
-              </h1>
-              <p className="text-[11px] text-slate-400">
-                Overview of your platform performance and activity
-              </p>
+            <div className="flex min-w-0 items-center gap-3">
+              {!isSidebarOpen && (
+                <button
+                  type="button"
+                  aria-label="Show sidebar"
+                  aria-controls="admin-dashboard-sidebar"
+                  aria-expanded={isSidebarOpen}
+                  onClick={() => setIsSidebarOpen(true)}
+                  className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-linear-to-br from-sky-400 to-indigo-500 text-sm font-bold"
+                >
+                  S
+                </button>
+              )}
+              <div
+                className={`min-w-0 ${isSidebarOpen ? "" : "border-l border-white/10 pl-3"}`}
+              >
+                <h1 className="mt-1 text-xl font-semibold tracking-tight text-white sm:text-2xl">
+                  Admin Dashboard
+                </h1>
+                <p className="text-[11px] text-slate-400">
+                  Overview of your platform performance and activity
+                </p>
+              </div>
             </div>
             <div className="flex items-center gap-3">
               <div className="hidden h-9 w-56 items-center gap-2 rounded-md border border-white/10 bg-[#101f36] px-3 text-[10px] text-slate-500 md:flex">

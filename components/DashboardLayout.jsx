@@ -116,22 +116,21 @@ const DashboardLayout = ({
         <main className="min-w-0 flex-1 bg-[#091a30] p-3 sm:p-5">
           <header className="flex flex-wrap items-center justify-between gap-3 border-b border-white/8 pb-4">
             <div className="flex min-w-0 items-center gap-3">
-              <button
-                type="button"
-                aria-label={isSidebarOpen ? "Hide sidebar" : "Show sidebar"}
-                aria-controls="dashboard-sidebar"
-                aria-expanded={isSidebarOpen}
-                onClick={() => setIsSidebarOpen((open) => !open)}
-                className="flex shrink-0 items-center gap-2 rounded px-2 py-1 transition hover:bg-white/5"
-              >
-                <span className="flex h-6 w-6 items-center justify-center rounded bg-blue-500 text-[10px] font-bold">
+              {!isSidebarOpen && (
+                <button
+                  type="button"
+                  aria-label="Show sidebar"
+                  aria-controls="dashboard-sidebar"
+                  aria-expanded={isSidebarOpen}
+                  onClick={() => setIsSidebarOpen(true)}
+                  className="flex h-8 w-8 shrink-0 items-center justify-center rounded bg-blue-500 text-[10px] font-bold transition hover:bg-blue-400"
+                >
                   S
-                </span>
-                <span className="text-xs font-bold tracking-tight">
-                  SUBNIVO
-                </span>
-              </button>
-              <div className="min-w-0 border-l border-white/10 pl-3">
+                </button>
+              )}
+              <div
+                className={`min-w-0 ${isSidebarOpen ? "" : "border-l border-white/10 pl-3"}`}
+              >
                 <h1 className="text-base font-semibold sm:text-lg">
                   Welcome back, {username} 👋
                 </h1>
