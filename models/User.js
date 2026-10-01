@@ -25,6 +25,11 @@ const UserSchema = new Schema(
       type: String,
       required: false,
     },
+    country: {
+      type: String,
+      required: false,
+      default: "Unknown",
+    },
     status: {
       type: String,
       default: "active",

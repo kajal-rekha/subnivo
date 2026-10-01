@@ -160,7 +160,11 @@ export const getMySubscription = async (req, res) => {
 
     const subscription = await Subscription.findOne({
       user_id: userId,
-    }).populate("plan_id", "name price duration durationUnit features");
+      status: "active",
+      endDate: { $gt: new Date() },
+    })
+      .sort({ endDate: -1, createdAt: -1 })
+      .populate("plan_id", "name price duration durationUnit features");
 
     if (!subscription) {
       return res.status(404).json({ error: "No subscription found!" });

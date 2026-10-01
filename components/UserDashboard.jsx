@@ -130,7 +130,7 @@ const UserDashboard = () => {
                     href="/plans"
                     className="rounded bg-blue-600 px-3 py-2 text-[11px] font-medium hover:bg-blue-500"
                   >
-                    Browse Plans
+                    Get Subscription
                   </Link>
                 )}
               </div>
@@ -176,7 +176,10 @@ const UserDashboard = () => {
           </section>
 
           <section className="mt-3 grid gap-3 xl:grid-cols-[1.15fr_1fr_0.82fr]">
-            <div className="rounded-md border border-white/8 bg-[#0d2139] p-4">
+            <div
+              id="recent-payments"
+              className="rounded-md border border-white/8 bg-[#0d2139] p-4"
+            >
               <div className="flex items-center justify-between">
                 <h2 className="text-[13px] font-semibold">Recent Payments</h2>
                 <Link href="/plans" className="text-[11px] text-blue-300">
