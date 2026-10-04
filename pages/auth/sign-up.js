@@ -94,8 +94,8 @@ const SignupForm = () => {
         });
     };
     return (
-        <div className=" mt-28 mx-auto max-w-lg">
-            <h3 className="text-xl md:text-4xl font-medium mb-8">Signup</h3>
+        <div className="mx-auto mt-24 w-full max-w-lg px-4 sm:mt-28 sm:px-6 pb-10">
+            <h3 className="mb-8 text-2xl font-medium sm:text-3xl md:text-4xl">Signup</h3>
 
             <form
                 onSubmit={handleSubmit}
@@ -178,7 +178,7 @@ const SignupForm = () => {
                 >
                     {isLoading ? <Loading isLoading={isLoading} /> : "Sign Up"}
                 </button>
-                <p>
+                <p className="flex flex-wrap gap-x-1">
                     <span className="text-gray">Allready have an account?</span>
                     <Link href="/auth/sign-in" className="link-item">
                         Login

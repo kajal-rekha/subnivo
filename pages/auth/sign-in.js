@@ -80,9 +80,9 @@ const SignInForm = () => {
   return (
     <form
       onSubmit={handleSubmit}
-      className="login-form flex flex-col gap-5 mt-28 mx-auto max-w-lg"
+      className="login-form mx-auto mt-24 flex w-full max-w-lg flex-col gap-5 px-4 sm:mt-28 sm:px-6 pb-10"
     >
-      <h3 className="text-4xl font-medium">Login</h3>
+      <h3 className="text-2xl font-medium sm:text-3xl md:text-4xl">Login</h3>
 
       {/*======== Email ========*/}
       <div className="flex flex-col gap-2 w-full">
@@ -125,7 +125,7 @@ const SignInForm = () => {
       >
         {isLoading ? <Loading isLoading={isLoading} /> : "Login"}
       </button>
-      <p>
+      <p className="flex flex-wrap gap-x-1">
         <span className="text-gray">Do not have an account?</span>
         <Link href="/auth/sign-up" className="link-item">
           Register
